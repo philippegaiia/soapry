@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+Route::view('/', 'home');
+
+Route::get('contact', 'ContactFormController@create')->name('contact.create');
+Route::post('contact' ,'ContactFormController@store')->name('contact.store');
+
+
+Route::view('about', 'about');
+
+// Route::get('batches', 'BatchController@index');
+// Route::get('batches/create', 'BatchController@create');
+// Route::post('batches', 'BatchController@store');
+// Route::get('batches/{batch}', 'BatchController@show');
+// Route::get('batches/{batch}/edit', 'BatchController@edit');
+// Route::patch('batches/{batch}', 'BatchController@update');
+// Route::delete('batches/{batch}', 'BatchController@destroy');
+
+Route::resource('batches', 'BatchController');//->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
