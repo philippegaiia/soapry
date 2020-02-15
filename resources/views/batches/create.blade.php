@@ -7,7 +7,7 @@ New Production Batch
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>Add a Production Batch</h1>
+            <h1>Ajouter un batch</h1>
         </div>
     </div>
     <div class="row">
@@ -17,7 +17,7 @@ New Production Batch
                 @include('batches.form')
 
 
-                <button type="submit" class="btn btn-primary">Add Batch</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
             </form>
         </div>
     </div>
@@ -41,8 +41,8 @@ New Production Batch
                 @endforeach
             </ul>
         </div>
-    </div>
-    <div class="row">
+    </div> --}}
+    {{-- <div class="row">
         <div class="col-12">
             @foreach ($products as $product)
             <h4>{{ $product->name}}</h4>
@@ -56,6 +56,34 @@ New Production Batch
         </div>
 
     </div> --}}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Liste des Batches</h1>
+            <p><a href="{{ route('batches.create') }}">Ajouter un bacth</a></p>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm table-over">
+                <thead>
+                    <tr>
+                    <th>Batch No</th>
+                    <th>Product</th>
+                    <th>Quantité</th>
+                    <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($batches as $batch)
+                        <tr>
+                            <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->number }} </a></td>
+                            <td>{{ $batch->product->code }} - {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
+                            <td>{{ $batch->units}}</td>
+                            <td>{{ $batch->status }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </div>
+        </div>
+    </div>
 
 @endsection
 

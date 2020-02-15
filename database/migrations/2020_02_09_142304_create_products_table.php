@@ -17,6 +17,8 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('code');
             $table->string('name');
+            $table->unsignedSmallInteger('weight');
+            $table->unsignedBigInteger('product_categories_id')->nullable();
             $table->timestamps();
         });
     }

@@ -16,12 +16,17 @@ class CreateBatchesTable extends Migration
         Schema::create('batches', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
-            $table->string('number');
-            $table->string('temp');
+            $table->string('number')->default('TEMP');
+            $table->date('production_date');
+            $table->boolean('produced');
+            $table->date('ready_date');
+            $table->float('oil_weight', 7, 3);
+            $table->mediumInteger('units');
             $table->integer('status');
+            $table->text('comments')->nullable();
             $table->timestamps();
 
-            // $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

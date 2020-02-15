@@ -14,25 +14,25 @@ Batches List
                 <table class="table table-striped table-sm table-over">
                 <thead>
                     <tr>
-                    <th>Batch No</th>
-                    <th>Product</th>
-                    <th>Quantité</th>
-                    <th>Date Production</th>
+                    <th>Code</th>
+                    <th>Product Name</th>
+                    <th>Product Name</th>
+                    <th>Product Name</th>
                     <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($batches as $batch)
                         <tr>
-                            <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->number }} </a></td>
-                            <td>{{ $batch->product->code }} - {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
-                            <td>{{ $batch->units}}</td>
-                            <td>{{ $batch->production_date}}</td>
-                            <td>{{ $batch->status }}</td>
-                        </tr>
+                    <td>{{ $batch->id }}</td>
+                    <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->number }} </a></td>
+                    <td>{{ $batch->product->code }}</td>
+                    <td>{{ $batch->product->name }}</td>
+                    <td>{{ $batch->status }}</td>
+                    </tr>
                     @endforeach
                 </tbody>
-            </div>
+
         </div>
     </div>
 

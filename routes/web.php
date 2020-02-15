@@ -7,7 +7,9 @@ Route::view('/', 'home');
 
 Route::get('contact', 'ContactFormController@create')->name('contact.create');
 Route::post('contact' ,'ContactFormController@store')->name('contact.store');
-
+Route::get('/test', function(){
+    return view('sidebartest');
+});
 
 Route::view('about', 'about');
 
@@ -20,6 +22,8 @@ Route::view('about', 'about');
 // Route::delete('batches/{batch}', 'BatchController@destroy');
 
 Route::resource('batches', 'BatchController');//->middleware('auth');
+Route::resource('products', 'ProductController');
+Route::resource('product_categories', 'ProductCategoryController');
 
 Auth::routes();
 

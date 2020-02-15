@@ -25,9 +25,11 @@ class BatchController extends Controller
 
     public function create()
     {
+        $batches = Batch::all();
         $products = Product::all();
+        $lastBatch = Batch::orderBy('id', 'desc')->first()->id;
         $batch = new Batch();// creazte empty array
-        return view('batches.create', compact('products', 'batch'));
+        return view('batches.create', compact('products', 'batch', 'batches','lastBatch'));
     }
 
     public function store()
@@ -67,9 +69,13 @@ class BatchController extends Controller
 
         return request()->validate([
             'number' => 'required|min:2',
-            'temp' => 'required',
             'status' => 'required',
-            'product_id' => 'required'
+            'product_id' => 'required',
+            'production_date' => 'required|date',
+            'ready_date' => 'required|date',
+            'oil_weight' => 'required',
+            'units' => 'required',
+
         ]);
     }
 }
