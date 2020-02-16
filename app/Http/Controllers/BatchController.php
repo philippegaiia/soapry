@@ -47,8 +47,10 @@ class BatchController extends Controller
 
     public function edit(Batch $batch)
     {
+        $batches = Batch::all();
+        $lastBatch = Batch::orderBy('id', 'desc')->first()->id;
         $products = Product::all();
-        return view('batches.edit', compact('batch', 'products'));
+        return view('batches.edit', compact('batch', 'products', 'batches', 'lastBatch'));
     }
 
     public function update(Batch $batch)
@@ -71,6 +73,7 @@ class BatchController extends Controller
             'number' => 'required|min:2',
             'status' => 'required',
             'product_id' => 'required',
+            'produced' => 'required',
             'production_date' => 'required|date',
             'ready_date' => 'required|date',
             'oil_weight' => 'required',

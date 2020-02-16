@@ -59,14 +59,15 @@ New Production Batch
 
     <div class="row">
         <div class="col-md-12">
-            <h1>Liste des Batches</h1>
-            <p><a href="{{ route('batches.create') }}">Ajouter un bacth</a></p>
+            <h3>Liste des Batches</h3>
             <div class="table-responsive">
                 <table class="table table-striped table-sm table-over">
-                <thead>
+               <thead>
                     <tr>
                     <th>Batch No</th>
                     <th>Product</th>
+                    <th>Date Production</th>
+                    <th>Production Ok</th>
                     <th>Quantité</th>
                     <th>Status</th>
                     </tr>
@@ -74,8 +75,10 @@ New Production Batch
                 <tbody>
                     @foreach ($batches as $batch)
                         <tr>
-                            <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->number }} </a></td>
-                            <td>{{ $batch->product->code }} - {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
+                            <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->product->code }}-{{ $batch->number }} </a></td>
+                            <td> {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
+                            <td>{{ $batch->production_date}}</td>
+                            <td>{{ $batch->produced}}</td>
                             <td>{{ $batch->units}}</td>
                             <td>{{ $batch->status }}</td>
                         </tr>

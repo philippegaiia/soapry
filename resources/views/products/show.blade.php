@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'detail for batch no' . $batch->number)
+@section('title', 'detail for batch no' . $product->name)
 
 
 {{-- // , 'Detail for' . {{ $batch->number ?? '' }}) --}}
@@ -11,19 +11,15 @@
         <div class="col-md-10 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h2> <strong>Batch No: {{ $batch->product->code}} - {{ $batch->number ?? ''}}   ({{ $batch->product->name}} {{$batch->product->weight}}G)</strong> </h2>
+                    <h2> <strong>{{ $product->code}} - {{ $product->name}}   ({{ $product->weight}}G)</strong> </h2>
                 </div>
                 <div class="card-body">
-                    <h4><strong>Disponible le: </strong>{{ $batch->ready_date }}</h4>
+                    <h4><strong>Catégorie: </strong>{{ $product->productCategory->name }}</h4>
                     <br>
-                    <h4><strong>Quantité: </strong>{{ $batch->units }}</h4>
+                    <h4><strong>Poids: </strong>{{ $product->weight }}</h4>
                     <br>
-
-                    <h4><strong>Date Production: </strong>{{ $batch->production_date }}    <strong>Production OK: </strong>{{ $batch->produced }}</h4>
+                    <h4><strong>Statut: </strong>{{ $product->active }}</h4>
                     <br>
-                    <h4><strong>Position: </strong>{{ $batch->status }}</h4>
-                    <br>
-                    <h4><strong>Chargement huiles: </strong>{{ $batch->oil_weight }}</h4>
                 </div>
             </div>
         </div>
@@ -31,9 +27,9 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
 
-            <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('products.edit', ['product' => $product]) }}" class="btn btn-primary">Edit</a>
 
-            <form action="{{ route('batches.destroy', ['batch' => $batch]) }}" method="POST" class="fm-inline">
+            <form action="{{ route('products.destroy', ['product' => $product]) }}" method="POST" class="fm-inline">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger ">DELETE</button>

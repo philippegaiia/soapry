@@ -1,34 +1,36 @@
 @extends('layouts.app')
 
 @section('title')
-Batches List
+Product List
 @endsection
 
 @section('content')
 
     <div class="row">
         <div class="col-md-12">
-            <h1>Liste des Batches</h1>
-            <p><a href="{{ route('batches.create') }}">Ajouter un bacth</a></p>
+            <h1>Liste des Produits</h1>
+            <p><a href="{{ route('products.create') }}">Ajouter un produit</a></p>
             <div class="table-responsive">
                 <table class="table table-striped table-sm table-over">
                 <thead>
                     <tr>
-                    <th>Code</th>
-                    <th>Product Name</th>
-                    <th>Product Name</th>
-                    <th>Product Name</th>
-                    <th>Status</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Poids (g)</th>
+                        <th>Categorie</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($batches as $batch)
+                    @foreach ($products as $product)
                         <tr>
-                    <td>{{ $batch->id }}</td>
-                    <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->number }} </a></td>
-                    <td>{{ $batch->product->code }}</td>
-                    <td>{{ $batch->product->name }}</td>
-                    <td>{{ $batch->status }}</td>
+                    <td>{{ $product->code }}</td>
+                    <td>{{ $product->name }} </td>
+                    <td>{{ $product->weight }}</td>
+                    <td>{{ $product->productCategory->name }}</td>
+                    <td>
+                        <a href="{{ route('products.edit', ['product' => $product])}}" class="btn btn-sm btn-info">EDIT</a>
+                        <a href="{{ route('products.show', ['product' => $product])}}" class="btn btn-sm btn-info">VOIR</a>
+                    </td>
                     </tr>
                     @endforeach
                 </tbody>

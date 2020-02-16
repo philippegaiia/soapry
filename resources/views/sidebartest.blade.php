@@ -102,10 +102,10 @@
                     </a>
                     <ul class="collapse list-unstyled" id="productSubmenu">
                         <li>
-                            <a href="/batches">Liste</a>
+                            <a href="/products">Liste</a>
                         </li>
                         <li>
-                            <a href="/batches/create">Ajouter</a>
+                            <a href="/products/create">Ajouter</a>
                         </li>
                         <li>
                             <a href="#">Chercher</a>

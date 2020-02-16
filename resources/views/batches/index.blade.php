@@ -16,18 +16,20 @@ Batches List
                     <tr>
                     <th>Batch No</th>
                     <th>Product</th>
-                    <th>Quantité</th>
                     <th>Date Production</th>
+                    <th>Production Ok</th>
+                    <th>Quantité</th>
                     <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($batches as $batch)
                         <tr>
-                            <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->number }} </a></td>
-                            <td>{{ $batch->product->code }} - {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
-                            <td>{{ $batch->units}}</td>
+                            <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->product->code }}-{{ $batch->number }} </a></td>
+                            <td> {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
                             <td>{{ $batch->production_date}}</td>
+                            <td>{{ $batch->produced}}</td>
+                            <td>{{ $batch->units}}</td>
                             <td>{{ $batch->status }}</td>
                         </tr>
                     @endforeach

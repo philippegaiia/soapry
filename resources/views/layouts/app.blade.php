@@ -32,7 +32,7 @@
             </div>
         @endif
 
-        <main class="py-4">
+        <main class="py-2">
             <div class="container">
                  @yield('content')
             </div>

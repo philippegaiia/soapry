@@ -16,9 +16,9 @@ class CreateBatchesTable extends Migration
         Schema::create('batches', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
-            $table->string('number')->default('TEMP');
+            $table->string('number');
             $table->date('production_date');
-            $table->boolean('produced');
+            $table->boolean('produced')->default(false);
             $table->date('ready_date');
             $table->float('oil_weight', 7, 3);
             $table->mediumInteger('units');

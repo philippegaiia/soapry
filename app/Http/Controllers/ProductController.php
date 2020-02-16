@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -13,7 +15,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('products.index', compact('products'));
+
     }
 
     /**
@@ -23,7 +28,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = ProductCategory::all();
+        $product = new Product();
+        return view('products.create', compact('categories', 'product'));
     }
 
     /**
@@ -32,9 +39,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        Product::create($this->validateRequest());
+
+        return redirect('products');
     }
 
     /**
@@ -43,9 +52,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -54,9 +63,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+         $categories = ProductCategory::all();
+
+         return view('products.edit', compact('categories', 'product'));
+
     }
 
     /**
@@ -66,9 +78,11 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Product $product)
     {
-        //
+         $product->update($this->validateRequest());
+
+        return redirect('products/' . $product->id);
     }
 
     /**
@@ -77,8 +91,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect('products');
+    }
+
+    private function validateRequest(){
+
+        return request()->validate([
+            'code' => 'required|min:2',
+            'name' => 'required',
+            'weight' => 'required|numeric',
+            'product_category_id' => 'required',
+            'comments' => '',
+            'active' => 'required',
+        ]);
     }
 }

@@ -13,6 +13,10 @@ class Batch extends Model
         'produced' => 0,
     ];
 
+    public function followups(){
+
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);
@@ -23,15 +27,19 @@ class Batch extends Model
         return $this->statusOptions()[$attribute];
     }
 
-    public function scopeOui($query)
-    {
-        return $query->where('produced', 1);
+    public function getProducedAttribute($attribute){
+        return $this->producedOptions()[$attribute];
     }
 
-    public function scopeNon($query)
-    {
-        return $query->where('produced', 0);
-    }
+    // public function scopeOui($query)
+    // {
+    //     return $query->where('produced', 1);
+    // }
+
+    // public function scopeNon($query)
+    // {
+    //     return $query->where('produced', 0);
+    // }
 
     public function scopePlanned($query)
     {
@@ -49,8 +57,14 @@ class Batch extends Model
             1 => 'Confirmé',
             2 => 'En cours',
             3 => 'Cure',
-            4 => 'Stock',
-            5 => 'Livré'
+            4 => 'Livré',
+        ];
+    }
+
+    public function producedOptions(){
+        return [
+            0 => 'Non',
+            1 => 'Oui',
         ];
     }
 }
