@@ -11,7 +11,7 @@
         <div class="col-md-10 mx-auto">
             <div class="card">
                 <div class="card-header">
-                    <h2> <strong>Batch No: {{ $batch->product->code}} - {{ $batch->number ?? ''}}   ({{ $batch->product->name}} {{$batch->product->weight}}G)</strong> </h2>
+                    <h3> <strong>Batch No: {{ $batch->product->code}} - {{ $batch->number ?? ''}}   ({{ $batch->product->name}} {{$batch->product->weight}}G)</strong> </h3>
                 </div>
                 <div class="card-body">
                     <h4><strong>Disponible le: </strong>{{ $batch->ready_date }}</h4>
@@ -31,13 +31,17 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
 
-            <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn btn-primary">Edit</a>
+            <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn btn-primary">MODIFIER</a>
 
             <form action="{{ route('batches.destroy', ['batch' => $batch]) }}" method="POST" class="fm-inline">
                 @method('DELETE')
                 @csrf
-                <button type="submit" class="btn btn-danger ">DELETE</button>
+                <button type="submit" class="btn btn-danger " onclick="return confirm('Etes-vous certain d\'effacer le Batch No {{ $batch->product->code }}-{{ $batch->number }} ?')">DELETE</button>
             </form>
+
+            <a href="{{ route('batches.index') }}" class="btn btn-dark float">AJOUTER TACHE</a>
+
+            <a href="{{ route('batches.index') }}" class="btn btn-info float-right">RETOUR LISTE</a>
 
         </div>
     </div>

@@ -34,7 +34,7 @@
 <div class="form-row">
    <div class="form-group col-md-6">
     <label for="oil_weight">Chargement en huiles (kg)</label>
-   <input type="number" name="oil_weight" id="oil_weight" class="form-control" value="{{ old('oil_weight') ?? $batch->oil_weight}}">
+   <input type="string" name="oil_weight" id="oil_weight" class="form-control" value="{{ old('oil_weight') ?? $batch->oil_weight}}">
         <p class="text-muted"> {{ $errors->first('oil_weight') }}</p>
 
     </div>

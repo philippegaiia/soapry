@@ -19,6 +19,9 @@ class BatchController extends Controller
         // $confirmed = Batch::confirmed()->get();
 
         $batches = Batch::all();
+        // $batches = Batch::where('status', 'Planifié')->get();
+
+       // dd($batches);
 
         return view('batches.index', compact('batches'));
     }
@@ -76,7 +79,7 @@ class BatchController extends Controller
             'produced' => 'required',
             'production_date' => 'required|date',
             'ready_date' => 'required|date',
-            'oil_weight' => 'required',
+            'oil_weight' => 'required|numeric',
             'units' => 'required',
 
         ]);

@@ -24,6 +24,7 @@ Route::view('about', 'about');
 Route::resource('batches', 'BatchController');//->middleware('auth');
 Route::resource('products', 'ProductController');
 Route::resource('product_categories', 'ProductCategoryController');
+Route::resource('tasks', 'TaskController');
 
 Auth::routes();
 

@@ -5,12 +5,12 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 mx-auto">
         <h1>Modifier Produit {{ $product->name }} {{ $product->weight}}G</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-7 mx-auto">
             <form action="{{ route('products.update', ['product' => $product]) }}" method="POST" class="pb-4">
                 @method('PATCH')
 

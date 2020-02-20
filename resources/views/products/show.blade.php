@@ -14,12 +14,33 @@
                     <h2> <strong>{{ $product->code}} - {{ $product->name}}   ({{ $product->weight}}G)</strong> </h2>
                 </div>
                 <div class="card-body">
-                    <h4><strong>Catégorie: </strong>{{ $product->productCategory->name }}</h4>
-                    <br>
-                    <h4><strong>Poids: </strong>{{ $product->weight }}</h4>
-                    <br>
-                    <h4><strong>Statut: </strong>{{ $product->active }}</h4>
-                    <br>
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                         <h4><strong>Catégorie: </strong>{{ $product->productCategory->name }}</h4>
+
+                    </div>
+                    <div class="col-md-4">
+                        <h4><strong>Poids: </strong>{{ $product->weight }}G </h4>
+                    </div>
+                        <div class="col-md-4">
+                            <h4>
+                                <strong>Statut: </strong>{{ $product->active }}
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-md-4">
+                            <h4>
+                               <strong>EAN13: </strong>{{ $product->ean }}
+                            </h4>
+                        </div>
+                        <div class="col-md-4">
+                             <h4>
+                                <strong>Code WP: </strong>{{ $product->wpcode }}
+                             </h4>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,6 +61,33 @@
 
 
     <hr>
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="table-responsive">
+            <table class="table table-striped table-sm table-over">
+            <thead>
+                <tr>
+                <th>Batch No</th>
+                <th>Date Production</th>
+                <th>Production Ok</th>
+                <th>Quantité</th>
+                <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($batches as $batch)
+                    <tr>
+                        <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->product->code }}-{{ $batch->number }} </a></td>
+                        <td>{{ $batch->production_date}}</td>
+                        <td>{{ $batch->produced}}</td>
+                        <td>{{ $batch->units}}</td>
+                        <td>{{ $batch->status }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </div>
+    </div>
+</div>
 
     {{-- <div class="row">
         <div class="col-6">

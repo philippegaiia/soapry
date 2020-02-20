@@ -8,7 +8,7 @@ Contact
     <div class="row">
 
         <div class="col-md-6 m-auto">
-            <h1>Contact Us</h1>
+            <h1>Envoyer un ticket</h1>
 
             @if (! session()->has('message'))
                 <form action="{{ route('contact.store') }}" method='POST'>

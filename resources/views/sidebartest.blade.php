@@ -51,12 +51,6 @@
                         </li>
                     @endguest
                 </li>
-                <li>
-                  <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        Batches
-                    </a>
-                </li>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                         <i class="fas fa-home"></i>

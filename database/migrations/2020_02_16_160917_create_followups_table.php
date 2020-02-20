@@ -17,9 +17,12 @@ class CreateFollowupsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('batch_id');
             $table->unsignedBigInteger('task_id');
+            $table->string('operator')->default('production');
             $table->date('due_date');
-            $table->integer('done');
+            $table->smallInteger('done');
             $table->timestamps();
+
+            $table->foreign('batch_id')->references('id')->on('batches')->onDelete('cascade');
         });
     }
 

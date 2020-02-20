@@ -20,7 +20,9 @@ class CreateProductsTable extends Migration
             $table->unsignedSmallInteger('weight');
             $table->unsignedBigInteger('product_category_id');
             $table->smallInteger('active');
-            $table->text('comments');
+            $table->string('ean')->nullable();
+            $table->string('wpcode')->nullable();
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }

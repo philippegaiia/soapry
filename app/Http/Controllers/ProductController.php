@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Batch;
 use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
@@ -15,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+
+        $products = Product::orderBy('code')->get();
 
         return view('products.index', compact('products'));
 
@@ -54,7 +57,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        $batches = Batch::where('product_id', $product->id )->orderBy('production_date', 'desc')->get();
+
+       // dd($batches);
+
+        return view('products.show', compact('product', 'batches'));
     }
 
     /**
@@ -107,6 +114,8 @@ class ProductController extends Controller
             'product_category_id' => 'required',
             'comments' => '',
             'active' => 'required',
+            'ean' => '',
+            'wpcode' => '',
         ]);
     }
 }

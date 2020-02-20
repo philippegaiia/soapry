@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -13,7 +14,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::orderBy('code')->get();
+
+        // dd($tasks);
+
+        return view('tasks.index', compact('tasks'));
+
     }
 
     /**
@@ -23,7 +29,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $task = new Task();
+        return view('tasks.create', compact('task'));
     }
 
     /**
@@ -32,9 +39,11 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        Task::create($this->validateRequest());
+
+        return redirect('tasks');
     }
 
     /**
@@ -43,9 +52,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        //
+        return view('tasks.show', compact('task'));
     }
 
     /**
@@ -54,9 +63,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        //
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -66,9 +75,11 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Task $task)
     {
-        //
+        $task->update($this->validateRequest());
+
+        return redirect('tasks/' . $task->id);
     }
 
     /**
@@ -77,8 +88,22 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        return redirect('tasks');
     }
+
+    private function validateRequest(){
+
+        return request()->validate([
+            'code' => 'required',
+            'name' => 'required|min:3',
+            'description' => '',
+            'active' => 'required'
+        ]);
+    }
+
+
 }
