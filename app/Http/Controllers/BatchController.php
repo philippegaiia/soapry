@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Batch;
 use App\Product;
+use App\Followup;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
@@ -45,7 +46,12 @@ class BatchController extends Controller
     public function show(Batch $batch)
     {
         // $batch = Batch::findOrFail($batch);
-        return view('batches.show', compact('batch'));
+
+        $followups = Followup::where('batch_id', $batch->id )->get();
+
+        // dd($followups);
+
+        return view('batches.show', compact('batch', 'followups'));
     }
 
     public function edit(Batch $batch)
@@ -73,15 +79,15 @@ class BatchController extends Controller
     private function validateRequest(){
 
         return request()->validate([
-            'number' => 'required|min:2',
+            'number' => 'required|unique:batches',
             'status' => 'required',
             'product_id' => 'required',
             'produced' => 'required',
-            'production_date' => 'required|date',
-            'ready_date' => 'required|date',
+            'production_date' => 'required|date|after_or_equal:today',
+            'ready_date' => 'required|date|after_or_equal:production_date',
             'oil_weight' => 'required|numeric',
             'units' => 'required',
-
+            'comments' => 'nullable',
         ]);
     }
 }

@@ -28,7 +28,7 @@ Product List
                     <td>{{ $product->weight }}</td>
                     <td>{{ $product->productCategory->name }}</td>
                     <td>
-                        <a href="{{ route('products.edit', ['product' => $product])}}" class="btn btn-sm btn-info">EDIT</a>
+                        <a href="{{ route('products.edit', ['product' => $product])}}" class="btn btn-sm btn-secondary">EDIT</a>
                         <a href="{{ route('products.show', ['product' => $product])}}" class="btn btn-sm btn-info">VOIR</a>
                     </td>
                     </tr>

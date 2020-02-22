@@ -25,6 +25,14 @@ Route::resource('batches', 'BatchController');//->middleware('auth');
 Route::resource('products', 'ProductController');
 Route::resource('product_categories', 'ProductCategoryController');
 Route::resource('tasks', 'TaskController');
+Route::resource('suppliers', 'SupplierController');
+
+Route::get('/batches/{batch}/followups/create', 'followupController@create');
+Route::post('/batches/{batch}/followups', 'followupController@store');
+
+Route::get('/followups/{followup}/edit', 'FollowupController@edit');
+Route::patch('/followups/{followup}', 'FollowupController@update');
+Route::get('/followups', 'FollowupController@index');
 
 Auth::routes();
 

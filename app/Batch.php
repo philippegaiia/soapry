@@ -14,6 +14,7 @@ class Batch extends Model
     ];
 
     public function followups(){
+        return $this->hasMany(Followup::class);
 
     }
 

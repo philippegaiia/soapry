@@ -13,11 +13,11 @@ class Followup extends Model
     ];
 
     public function batch(){
-        $this->belongsTo(Batch::class);
+        return $this->belongsTo(Batch::class);
     }
 
     public function task(){
-        $this->belongsTo(Task::class);
+        return $this->belongsTo(Task::class);
     }
 
      public function getDoneAttribute($attribute){

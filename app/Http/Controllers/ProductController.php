@@ -57,7 +57,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $batches = Batch::where('product_id', $product->id )->orderBy('production_date', 'desc')->get();
+        $batches = Batch::where('product_id', $product->id )
+                ->orderBy('status')
+                ->orderBy('production_date', 'desc')
+                ->get();
 
        // dd($batches);
 

@@ -12,28 +12,37 @@ Batches List
             <p><a href="{{ route('batches.create') }}">Ajouter un bacth</a></p>
             <div class="table-responsive">
                 <table class="table table-striped table-sm table-over">
-                <thead>
-                    <tr>
-                    <th>Batch No</th>
-                    <th>Product</th>
-                    <th>Date Production</th>
-                    <th>Production Ok</th>
-                    <th>Quantité</th>
-                    <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($batches as $batch)
+                    <thead>
                         <tr>
-                            <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->product->code }}-{{ $batch->number }} </a></td>
-                            <td> {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
-                            <td>{{ $batch->production_date}}</td>
-                            <td>{{ $batch->produced}}</td>
-                            <td>{{ $batch->units}}</td>
-                            <td>{{ $batch->status }}</td>
+                        <th>Batch No</th>
+                        <th>Product</th>
+                        <th>Date Prod</th>
+                        <th>Prod Ok</th>
+                        <th>Disponible</th>
+                        <th>Quantité</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                         </tr>
-                    @endforeach
-                </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach ($batches as $batch)
+                            <tr>
+                              <small>  <td> {{ $batch->product->code }}-{{ $batch->number }}</td>
+                                <td> {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
+                                <td>{{ $batch->production_date}}</td>
+                                <td>{{ $batch->produced}}</td>
+                                <td>{{ $batch->ready_date}}</td>
+                                <td>{{ $batch->units}}</td>
+                                <td>{{ $batch->status }}</td>
+                                <td>
+                                     <a href="{{ route('batches.edit', ['batch' => $batch])}}" class="btn btn-sm btn-secondary">EDIT</a>
+                                    <a href="{{ route('batches.show', ['batch' => $batch])}}" class="btn btn-sm btn-info">VOIR</a>
+                                </td>
+                                </small>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

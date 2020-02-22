@@ -13,7 +13,7 @@ class Task extends Model
     ];
 
     public function followups(){
-        $this->hasMany(Followup::class);
+        return $this->hasMany(Followup::class);
     }
 
      public function getActiveAttribute($attribute){
