@@ -24,7 +24,7 @@ Route::resource('product_categories', 'ProductCategoryController')->except(['cre
 Route::resource('tasks', 'TaskController');
 Route::resource('suppliers', 'SupplierController');
 Route::resource('ingredient_categories', 'IngredientCategoryController');
-Route::resource('ingredient', 'IngredientController');
+Route::resource('ingredients', 'IngredientController');
 
 Route::get('/batches/{batch}/followups/create', 'followupController@create');
 Route::post('/batches/{batch}/followups', 'followupController@store');

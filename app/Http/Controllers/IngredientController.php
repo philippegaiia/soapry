@@ -97,7 +97,7 @@ class IngredientController extends Controller
     {
         $ingredient->delete();
 
-        return redirect('ingredients');
+        return redirect('ingredients')->with('message', 'L\'ingrédient a été effacé !');
     }
 
     private function validateRequest(){
@@ -105,12 +105,13 @@ class IngredientController extends Controller
         return request()->validate([
             'code' => 'required|min:2',
             'name' => 'required',
-            'weight' => 'required|numeric',
+            'inci' => 'required',
             'ingredient_category_id' => 'required',
-            'comments' => '',
+            'comments' => 'nullable',
             'active' => 'required',
-            'ean' => '',
-            'wpcode' => '',
+            'cas' => 'nullable',
+            'einecs' => 'nullable',
+
         ]);
     }
 }

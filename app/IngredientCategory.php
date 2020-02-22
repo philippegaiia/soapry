@@ -8,7 +8,7 @@ class IngredientCategory extends Model
 {
      protected $guarded =[];
 
-    public function products()
+    public function ingredients()
     {
         return $this->hasMany(Ingredient::class);
     }

@@ -22,6 +22,7 @@ class CreateIngredientsTable extends Migration
             $table->string('cas')->nullable();
             $table->string('einecs')->nullable();
             $table->smallInteger('active');
+            $table->text('comments')->nullable();
 
             $table->timestamps();
         });

@@ -28,7 +28,7 @@
                         </button>
                     </form>
 
-                    <a href="{{ route('batches.index') }}" class="btn btn-sm btn-info float-right"><i class="fas fa-list"> </i> Retour Liste</a>
+                    <a href="{{ route('products.index') }}" class="btn btn-sm btn-info float-right"><i class="fas fa-list"> </i> Retour Liste</a>
 
                 </div>
                 <div class="card-body">
@@ -61,19 +61,19 @@
                         </div>
                     </div>
 
-                    {{-- <div class="row">
+                    <div class="row {{ $product->comments == '' ? 'd-none' : '' }}">
                         <div class="col">
 
                             <h5>
                                 <strong>Comments</strong>
                             </h5>
 
-                            <div class="border border-secondary rounded-lg py-4 px-2" rows="5" cols="100">
+                        <div class="border border-secondary rounded-lg py-4 px-2 " rows="5" cols="100">
                                 {{ $product->comments }}
                             </div>
 
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
             </div>

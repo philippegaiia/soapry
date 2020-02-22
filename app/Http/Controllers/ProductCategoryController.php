@@ -86,8 +86,8 @@ class ProductCategoryController extends Controller
      private function validateRequest(){
 
         return request()->validate([
-            'code' => 'required|min:3|unique:product_categories',
-            'name' => 'required|min:5|unique:product_categories',
+            'code' => 'required|min:3',
+            'name' => 'required|min:5',
         ]);
     }
 }

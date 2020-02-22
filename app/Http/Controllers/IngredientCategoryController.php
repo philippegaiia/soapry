@@ -24,12 +24,12 @@ class IngredientCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $categories = IngredientCategory::all();
-        $category = new IngredientCategory();
-        return view('ingredient_categories.create', compact('categories'));
-    }
+    // public function create()
+    // {
+    //     $categories = IngredientCategory::all();
+    //     $ingredient_category = new IngredientCategory();
+    //     return view('ingredient_categories.create', compact('categories'));
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -50,9 +50,9 @@ class IngredientCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(IngredientCategory $category)
+    public function edit(IngredientCategory $ingredient_category)
     {
-        return view('ingredient_categories', compact('category'));
+        return view('ingredient_categories.edit', compact('ingredient_category'));
     }
 
     /**
@@ -62,9 +62,10 @@ class IngredientCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(IngredientCategory $category)
+    public function update(IngredientCategory $ingredient_category)
     {
-        $category->update($this->validateRequest());
+
+        $ingredient_category->update($this->validateRequest());
 
         return redirect('ingredient_categories');
     }
@@ -75,9 +76,9 @@ class IngredientCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(IngredientCategory $category)
+    public function destroy(IngredientCategory $ingredient_category)
     {
-        $category->delete();
+        $ingredient_category->delete();
 
         return redirect('ingredient_categories');
     }
@@ -85,8 +86,8 @@ class IngredientCategoryController extends Controller
      private function validateRequest(){
 
         return request()->validate([
-            'code' => 'required|min:2',
-            'name' => 'required',
+            'code' => 'required|min:3|unique:ingredient_categories',
+            'name' => 'required|min:5',
         ]);
     }
 }
