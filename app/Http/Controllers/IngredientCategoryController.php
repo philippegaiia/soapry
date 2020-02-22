@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductCategory;
+use App\IngredientCategory;
 use Illuminate\Http\Request;
 
-class ProductCategoryController extends Controller
+class IngredientCategoryController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $categories = ProductCategory::all();
+        $categories = IngredientCategory::all();
 
-        return view('product_categories.index', compact('categories'));
+        return view('ingredient_categories.index', compact('categories'));
     }
 
     /**
@@ -24,12 +24,12 @@ class ProductCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
-    //     $categories = ProductCategory::all();
-    //     $product_category = new ProductCategory();
-    //     return view('product_categories.create', compact('categories'));
-    // }
+    public function create()
+    {
+        $categories = IngredientCategory::all();
+        $category = new IngredientCategory();
+        return view('ingredient_categories.create', compact('categories'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,9 +39,9 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        ProductCategory::create($this->validateRequest());
+        IngredientCategory::create($this->validateRequest());
 
-        return redirect('product_categories');
+        return redirect('ingredient_categories');
     }
 
     /**
@@ -50,9 +50,9 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductCategory $product_category)
+    public function edit(IngredientCategory $category)
     {
-        return view('product_categories.edit', compact('product_category'));
+        return view('ingredient_categories', compact('category'));
     }
 
     /**
@@ -62,12 +62,11 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductCategory $product_category)
+    public function update(IngredientCategory $category)
     {
+        $category->update($this->validateRequest());
 
-        $product_category->update($this->validateRequest());
-
-        return redirect('product_categories');
+        return redirect('ingredient_categories');
     }
 
     /**
@@ -76,18 +75,18 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductCategory $product_category)
+    public function destroy(IngredientCategory $category)
     {
-        $product_category->delete();
+        $category->delete();
 
-        return redirect('product_categories');
+        return redirect('ingredient_categories');
     }
 
      private function validateRequest(){
 
         return request()->validate([
-            'code' => 'required|min:3|unique:product_categories',
-            'name' => 'required|min:5|unique:product_categories',
+            'code' => 'required|min:2',
+            'name' => 'required',
         ]);
     }
 }

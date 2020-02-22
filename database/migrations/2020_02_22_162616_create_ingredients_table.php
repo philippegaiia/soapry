@@ -15,6 +15,14 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('ingredient_category_id');
+            $table->string('code')->nullable();
+            $table->string('name');
+            $table->string('inci')->nullable();
+            $table->string('cas')->nullable();
+            $table->string('einecs')->nullable();
+            $table->smallInteger('active');
+
             $table->timestamps();
         });
     }

@@ -1,58 +1,83 @@
 @extends('layouts.app')
 
 @section('title')
-Categories List
+SM | Catégories Produit
 @endsection
 
 @section('content')
+<h1 class="mb-3">Categories Produit</h1>
     <div class="row">
-        <div class="col-md-12">
-            <h1>Categories</h1>
-            <div class="table-responsive">
-                <table class="table table-striped table-sm table-over">
-                <thead>
-                    <tr>
-                    <th>Code</th>
-                    <th>Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($categories as $category)
-                        <tr>
-                            <td>{{ $category->code }}</td>
-                            <td>{{ $category->name }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
+        <div class="col-md-8 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h3> Liste des catégories</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm table-over">
+                            <thead>
+                                <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($categories as $category)
+                                    <tr>
+                                        <td>{{ $category->code }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>
+                                            <a href="{{ route('product_categories.edit', $category->id )}}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                                            <form action="{{ route('product_categories.destroy', $category->id) }}"  method="POST" class="fm-inline">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-sm btn-danger fm-inline"
+                                                    onclick="return confirm('Etes-vous certain d\'effacer la catégorie produit {{ $category->code }}-{{ $category->name }} ?')">
+                                                    <i class="far fa-trash-alt"> </i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                <h3>Pas encore de catégories enregistrées</h3>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    {{-- <div class="row"> --}}
-        <div class="row">
-            <form action="{{route('product_categories.store')}}" method="post" >
+        <div class="col-md-4 mb-3">
+            <form action="{{ route('product_categories.store') }}" method="post" >
                 @csrf
-                <div class="col-12">
-
-                     <div class="form-inline">
-                    <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                    <div class="card-title">
+                        <h3> Ajouter une catégorie</h3>
+                    </div>
+                    <div class="form-group">
                         <label for="code">Code</label>
                         <input type="text" name="code" class="form-control" id="code" value="{{ old('code') ?? '' }}" required>
+                        <small class="text-danger">  {{ $errors->first('code') }}</small>
                     </div>
-                    <div class="col-md-6 mb-3">
+
+                    <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" id="name" value="{{ old('name') ?? '' }}" required>
+                        <small class="text-danger">  {{ $errors->first('name') }}</small>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Add Category</button>
-                </div></div>
-                </div>
+                    <button class="btn btn-primary d-block" type="submit"><i class="far fa-plus-square"> </i> Ajouter Catégorie</button>
 
+                    </div>
+                </div>
             </form>
         </div>
-    {{-- </div> --}}
-
-
+    </div>
 @endsection
 
     {{-- <div class="row">

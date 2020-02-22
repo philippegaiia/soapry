@@ -7,9 +7,6 @@ Route::view('/', 'home');
 
 Route::get('contact', 'ContactFormController@create')->name('contact.create');
 Route::post('contact' ,'ContactFormController@store')->name('contact.store');
-Route::get('/test', function(){
-    return view('sidebartest');
-});
 
 Route::view('about', 'about');
 
@@ -23,9 +20,11 @@ Route::view('about', 'about');
 
 Route::resource('batches', 'BatchController');//->middleware('auth');
 Route::resource('products', 'ProductController');
-Route::resource('product_categories', 'ProductCategoryController');
+Route::resource('product_categories', 'ProductCategoryController')->except(['create', 'show']);
 Route::resource('tasks', 'TaskController');
 Route::resource('suppliers', 'SupplierController');
+Route::resource('ingredient_categories', 'IngredientCategoryController');
+Route::resource('ingredient', 'IngredientController');
 
 Route::get('/batches/{batch}/followups/create', 'followupController@create');
 Route::post('/batches/{batch}/followups', 'followupController@store');
