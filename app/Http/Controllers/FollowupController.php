@@ -100,8 +100,10 @@ class FollowupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Followup $followup)
     {
-        //
+        $followup->delete();
+
+        return redirect('batches/' . $followup->batch->id)->with('message', 'Une tâche de suivi de production a été effacée');
     }
 }

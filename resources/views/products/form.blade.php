@@ -53,7 +53,7 @@
         </div>
 
         <div class="form-group">
-            <label for="comments">Informations Suivi de Production</label>
+            <label for="comments">Informations sur le produit</label>
             <textarea class="form-control" name="comments" id="comments">{{ $product->comments }}</textarea>
             <p class="text-muted"> {{ $errors->first('comments') }} </p>
         </div>

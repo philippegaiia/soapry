@@ -2,26 +2,10 @@
 
 @section('title', 'detail for batch no' . $batch->number)
 
-
-{{-- // , 'Detail for' . {{ $batch->number ?? '' }}) --}}
-
-
 @section('content')
-
-{{-- <div class="row">
-    <div class="col">
-
-    </div>
-    <div class="col">
-
-    </div>
-
-</div>
-<button>ou</button> --}}
+<h2> <strong>Batch No: </strong>{{ $batch->product->code}}-{{ $batch->number ?? ''}}   ({{ $batch->product->name}} {{$batch->product->weight}}G) </h2>
     <div class="row mb-3">
-      <h2> <strong>Batch No: </strong>{{ $batch->product->code}} - {{ $batch->number ?? ''}}   ({{ $batch->product->name}} {{$batch->product->weight}}G) </h2>
-
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div class="card mb-3">
                 <div class="card-body">
                     <h5><strong>Disponible le: </strong>{{ $batch->ready_date }}</h5>
@@ -34,22 +18,22 @@
                     <br>
                     <h5><strong>Position: </strong>{{ $batch->status }}</h5>
                     <br>
-                    <h5><strong>Chargement huiles: </strong>{{ $batch->oil_weight }}</h5>
+                    <h5><strong>Chargement huiles: </strong>{{ $batch->oil_weight }} KG</h5>
                 </div>
             </div>
 
-             <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn btn-primary">MODIFIER</a>
+             <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn  btn-primary"><i class="far fa-edit"></i>  MODIFIER</a>
 
             <form action="{{ route('batches.destroy', ['batch' => $batch]) }}" method="POST" class="fm-inline">
                 @method('DELETE')
                 @csrf
-                <button type="submit" class="btn btn-danger " onclick="return confirm('Etes-vous certain d\'effacer le Batch No {{ $batch->product->code }}-{{ $batch->number }} ?')">DELETE</button>
+                <button type="submit" class="btn  btn-danger " onclick="return confirm('Etes-vous certain d\'effacer le Batch No {{ $batch->product->code }}-{{ $batch->number }} ?')"><i class="far fa-trash-alt"> </i>  DELETE</button>
             </form>
 
-            <a href="{{ route('batches.index') }}" class="btn btn-info float-right">RETOUR LISTE</a>
+            <a href="{{ route('batches.index') }}" class="btn  btn-info float-right"><i class="fas fa-list"></i>  LISTE</a>
 
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 bg-white">
             <div class="table-responsive">
                 <table class="table table-striped table-sm table-over">
                     <thead>
@@ -65,6 +49,20 @@
                                 <td>{{ $followup->task->name}}</td>
                                 <td>{{ $followup->due_date}}</td>
                                 <td>{{ $followup->done}}</td>
+                                <td>
+                                     <a href="/followups/{{ $followup->id }}/edit" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                                    <form action="/followups/{{ $followup->id }}"  method="POST" class="fm-inline">
+                                        @method('DELETE')
+                                        @csrf
+                                            <button
+                                                type="submit"
+                                                class="btn btn-sm btn-danger fm-inline"
+                                                onclick="return confirm('Etes-vous certain d\'effacer la tâche de suivi de production - {{ $followup->task->name }} - prévue le {{ $followup->due_date }} ?')">
+                                            <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                </td>
+
                             </tr>
                         @empty
                         <p>no records yet</p>
@@ -74,7 +72,7 @@
                 </table>
             </div>
 
-              <a href="/batches/{{ $batch->id }}/followups/create" class="btn btn-dark float">AJOUTER TACHE</a>
+              <a href="/batches/{{ $batch->id }}/followups/create" class="btn btn-dark d-block"><i class="far fa-plus-square"></i> AJOUTER TACHE</a>
 
         </div>
 

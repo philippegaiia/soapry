@@ -7,7 +7,7 @@ Modifier Suivi Production
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h2>Modifier un job pour le Batch No {{ $followup->batch->product->code}} - {{ $followup->batch->number}} ({{ $followup->batch->product->name }} - {{ $followup->batch->product->weight }}G )</h2>
+            <h2>Modifier tâche pour le Batch No {{ $followup->batch->product->code}} - {{ $followup->batch->number}} ({{ $followup->batch->product->name }} - {{ $followup->batch->product->weight }}G )</h2>
         </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@ Modifier Suivi Production
 
                 @include('followups.form')
 
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" class="btn btn-primary">MODIFIER</button>
             </form>
         </div>
     </div>

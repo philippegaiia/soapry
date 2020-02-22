@@ -35,8 +35,8 @@ Batches List
                                 <td>{{ $batch->units}}</td>
                                 <td>{{ $batch->status }}</td>
                                 <td>
-                                     <a href="{{ route('batches.edit', ['batch' => $batch])}}" class="btn btn-sm btn-secondary">EDIT</a>
-                                    <a href="{{ route('batches.show', ['batch' => $batch])}}" class="btn btn-sm btn-info">VOIR</a>
+                                    <a href="{{ route('batches.edit', ['batch' => $batch])}}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> </a>
+                                    <a href="{{ route('batches.show', ['batch' => $batch])}}" class="btn btn-sm btn-info"><i class="far fa-eye"></i></a>
                                 </td>
                                 </small>
                             </tr>
