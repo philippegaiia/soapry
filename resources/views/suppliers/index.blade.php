@@ -16,7 +16,6 @@
                     <tr>
                         <th>Code</th>
                         <th>Nom</th>
-                        <th>Code Postal</th>
                         <th>Ville</th>
                         <th>Pays</th>
                         <th>Statut</th>
@@ -26,16 +25,17 @@
                 <tbody>
                     @forelse ($suppliers as $supplier)
                         <tr>
-                    <td>{{ $supplier->code }}</td>
-                    <td>{{ $supplier->name }} </td>
-                    <td>{{ $supplier->zip }}</td>
-                    <td>{{ $supplier->city }}</td>
-                    <td>{{ $supplier->country }}</td>
-                    <td>{{ $supplier->active }}</td>
-                    <td>
-                        <a href="{{ route('suppliers.edit', ['supplier' => $supplier])}}" class="btn btn-sm btn-info">EDIT</a>
-                        <a href="{{ route('suppliers.show', ['supplier' => $supplier])}}" class="btn btn-sm btn-info">VOIR</a>
-                    </td>
+                            <td>{{ $supplier->code }}</td>
+                            <td>{{ $supplier->name }} </td>
+                            <td>{{ $supplier->city }}</td>
+                            <td>{{ $supplier->country }}</td>
+                            <td>{{ $supplier->active }}</td>
+                            <td>
+                                <a href="{{ route('suppliers.edit', ['supplier' => $supplier])}}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> </a>
+                                <a href="{{ route('suppliers.show', ['supplier' => $supplier])}}" class="btn btn-sm btn-info"><i class="far fa-eye"></i></a>
+                                <a href="{{ route('suppliers.listings.create', ['supplier' => $supplier])}}" class="btn btn-sm btn-secondary"><i class="fas fa-plus"></i> Commande </a>
+                                <a href="{{ route('suppliers.listings.create', ['supplier' => $supplier])}}" class="btn btn-sm btn-outline-secondary "><i class="fas fa-plus"></i> Listing </a>
+                            </td>
                     </tr>
 
                     @empty

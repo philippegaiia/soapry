@@ -50,7 +50,7 @@
 
 <div class="form-group">
     <label for="address1">Adresse</label>
-    <input type="text" name="address1" id="address1" class="form-control" value="{{ old('address1') ?? $supplier->address1}}">
+    <input type="text" name="address1" id="address1" class="form-control" value="{{ old('address1') ?? $supplier->address1 ?? ''}}">
     <small class="text-danger">  {{ $errors->first('address1') }}</small>
 </div>
 

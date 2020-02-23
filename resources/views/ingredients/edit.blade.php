@@ -14,7 +14,7 @@
                 @method('PATCH')
                 @include('ingredients.form')
 
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i> Modifier Ingrédient</button>
             </form>
         </div>
     </div>

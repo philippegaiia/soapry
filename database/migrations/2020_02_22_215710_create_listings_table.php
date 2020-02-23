@@ -17,9 +17,11 @@ class CreateListingsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('ingredient_id');
             $table->unsignedBigInteger('supplier_id');
-            $table->string('listing');
-            $table->string('reference');
-            $table->text('comments');
+            $table->string('code');
+            $table->string('name');
+            $table->smallInteger('bio');
+            $table->smallInteger('active');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }

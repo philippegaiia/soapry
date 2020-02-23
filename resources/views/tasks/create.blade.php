@@ -16,7 +16,7 @@ Ajouter une tâche de suivi de production
 
                 @include('tasks.form')
 
-                <button type="submit" class="btn btn-primary">Ajouter</button>
+                <button type="submit" class="btn btn-primary"><i class="far fa-plus-square px-1"> </i>  Ajouter</button>
             </form>
         </div>
     </div>

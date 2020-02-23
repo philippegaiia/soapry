@@ -71,7 +71,7 @@ SM | Catégories Produit
                         <small class="text-danger">  {{ $errors->first('name') }}</small>
                     </div>
 
-                    <button class="btn btn-primary d-block" type="submit"><i class="far fa-plus-square"> </i> Ajouter Catégorie</button>
+                    <button class="btn btn-primary btn-block" type="submit"><i class="far fa-plus-square"> </i> Ajouter Catégorie</button>
 
                     </div>
                 </div>

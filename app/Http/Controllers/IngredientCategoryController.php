@@ -86,7 +86,7 @@ class IngredientCategoryController extends Controller
      private function validateRequest(){
 
         return request()->validate([
-            'code' => 'required|min:3|unique:ingredient_categories',
+            'code' => 'required|min:3',
             'name' => 'required|min:5',
         ]);
     }

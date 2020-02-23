@@ -79,7 +79,7 @@ class BatchController extends Controller
     private function validateRequest(){
 
         return request()->validate([
-            'number' => 'required|unique:batches',
+            'number' => 'required',
             'status' => 'required',
             'product_id' => 'required',
             'produced' => 'required',

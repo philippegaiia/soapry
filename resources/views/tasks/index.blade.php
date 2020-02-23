@@ -17,6 +17,7 @@ Liste des tâches
                         <th>Code</th>
                         <th>Name</th>
                         <th>Statut</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,8 +28,8 @@ Liste des tâches
                     <td>{{ $task->active }}</td>
 
                     <td>
-                        <a href="{{ route('tasks.edit', ['task' => $task])}}" class="btn btn-sm btn-info">EDIT</a>
-                        <a href="{{ route('tasks.show', ['task' => $task])}}" class="btn btn-sm btn-info">VOIR</a>
+                        <a href="{{ route('tasks.edit', ['task' => $task])}}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> </a>
+                        <a href="{{ route('tasks.show', ['task' => $task])}}" class="btn btn-sm btn-info"><i class="far fa-eye"></i> </a>
                     </td>
                     </tr>
                     @empty

@@ -21,8 +21,8 @@ class CreateSuppliersTable extends Migration
             $table->string('contact');
             $table->string('email');
             $table->string('tel');
-            $table->string('adrress1')->nullable();
-            $table->string('adrress2')->nullable();
+            $table->string('address1')->nullable();
+            $table->string('address2')->nullable();
             $table->string('zip')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();

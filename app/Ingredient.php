@@ -17,6 +17,11 @@ class Ingredient extends Model
         return $this->belongsTo(IngredientCategory::class);
     }
 
+    public function listings()
+    {
+        return $this->hasMany(Listing::class);
+    }
+
     public function getActiveAttribute($attribute){
         return $this->activeOptions()[$attribute];
     }

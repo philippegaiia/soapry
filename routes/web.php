@@ -26,12 +26,17 @@ Route::resource('suppliers', 'SupplierController');
 Route::resource('ingredient_categories', 'IngredientCategoryController');
 Route::resource('ingredients', 'IngredientController');
 
+Route::resource('suppliers.listings', 'SupplierListingController');
+
 Route::get('/batches/{batch}/followups/create', 'followupController@create');
 Route::post('/batches/{batch}/followups', 'followupController@store');
+Route::delete('/batches/{batch}/followups/{followup}', 'followupController@destroy');
 
 Route::get('/followups/{followup}/edit', 'FollowupController@edit');
 Route::patch('/followups/{followup}', 'FollowupController@update');
 Route::get('/followups', 'FollowupController@index');
+Route::delete('/followups/{followup}', 'FollowupController@destroy');
+
 
 Auth::routes();
 

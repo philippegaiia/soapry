@@ -16,7 +16,7 @@
 
                 @include('products.form')
 
-                <button type="submit" class="btn btn-primary">Modifier Produit</button>
+                <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i> Modifier Produit</button>
             </form>
         </div>
 </div

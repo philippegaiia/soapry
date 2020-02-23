@@ -31,13 +31,12 @@ Product List
                     <td>{{ $product->productCategory->name }}</td>
                     <td>{{ $product->active}}</td>
                     <td>
-                        <a href="{{ route('products.edit', ['product' => $product])}}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
-                        <a href="{{ route('products.show', ['product' => $product])}}" class="btn btn-sm btn-info"><i class="far fa-eye"></i></a>
+                        <a href="{{ route('products.edit', ['product' => $product])}}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> </a>
+                        <a href="{{ route('products.show', ['product' => $product])}}" class="btn btn-sm btn-info"><i class="far fa-eye"></i> </a>
                     </td>
                     </tr>
                     @endforeach
                 </tbody>
-
         </div>
     </div>
 

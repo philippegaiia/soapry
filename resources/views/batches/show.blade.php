@@ -8,6 +8,10 @@
         <div class="col-lg-5">
             <div class="card mb-3">
                 <div class="card-body">
+                    <div class="card-title">
+                        <h4><strong>Détails</strong></h4>
+                        <hr>
+                    </div>
                     <h5><strong>Disponible le: </strong>{{ $batch->ready_date }}</h5>
                     <br>
                     <h5><strong>Quantité: </strong>{{ $batch->units }}</h5>
@@ -22,7 +26,7 @@
                 </div>
             </div>
 
-             <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn  btn-primary"><i class="far fa-edit"></i>  MODIFIER</a>
+             <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn  btn-primary"><i class="far fa-edit"></i>  Modifier</a>
 
             <form action="{{ route('batches.destroy', ['batch' => $batch]) }}" method="POST" class="fm-inline">
                 @method('DELETE')
@@ -30,49 +34,58 @@
                 <button type="submit" class="btn  btn-danger " onclick="return confirm('Etes-vous certain d\'effacer le Batch No {{ $batch->product->code }}-{{ $batch->number }} ?')"><i class="far fa-trash-alt"> </i>  DELETE</button>
             </form>
 
-            <a href="{{ route('batches.index') }}" class="btn  btn-info float-right"><i class="fas fa-list"></i>  LISTE</a>
+            <a href="{{ route('batches.index') }}" class="btn  btn-info float-right"><i class="fas fa-list"></i>  Liste</a>
 
         </div>
-        <div class="col-lg-6 bg-white">
-            <div class="table-responsive">
-                <table class="table table-striped table-sm table-over">
-                    <thead>
-                        <tr>
-                        <th>Tâche</th>
-                        <th>Date</th>
-                        <th>Terminée</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($followups as $followup)
-                            <tr>
-                                <td>{{ $followup->task->name}}</td>
-                                <td>{{ $followup->due_date}}</td>
-                                <td>{{ $followup->done}}</td>
-                                <td>
-                                     <a href="/followups/{{ $followup->id }}/edit" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
-                                    <form action="/followups/{{ $followup->id }}"  method="POST" class="fm-inline">
-                                        @method('DELETE')
-                                        @csrf
-                                            <button
-                                                type="submit"
-                                                class="btn btn-sm btn-danger fm-inline"
-                                                onclick="return confirm('Etes-vous certain d\'effacer la tâche de suivi de production - {{ $followup->task->name }} - prévue le {{ $followup->due_date }} ?')">
-                                            <i class="far fa-trash-alt"></i>
-                                            </button>
-                                        </form>
-                                </td>
+        <div class="col-lg-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h4><strong>Suivi de Production</strong></h4>
+                    </div>
 
-                            </tr>
-                        @empty
-                        <p>no records yet</p>
+                     <div class="table-responsive">
+                        <table class="table table-striped table-sm table-over">
+                            <thead>
+                                <tr>
+                                <th>Tâche</th>
+                                <th>Date</th>
+                                <th>Terminée</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($followups as $followup)
+                                    <tr>
+                                        <td>{{ $followup->task->name}}</td>
+                                        <td>{{ $followup->due_date}}</td>
+                                        <td>{{ $followup->done}}</td>
+                                        <td>
+                                            <a href="/followups/{{ $followup->id }}/edit" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                                        <form action="/batches/{{ $batch->id}}/followups/{{ $followup->id }}"  method="POST" class="fm-inline">
+                                                @method('DELETE')
+                                                @csrf
+                                                    <button
+                                                        type="submit"
+                                                        class="btn btn-sm btn-danger fm-inline"
+                                                        onclick="return confirm('Etes-vous certain d\'effacer la tâche de suivi de production - {{ $followup->task->name }} - prévue le {{ $followup->due_date }} ?')">
+                                                    <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                <p>Pas de tâches encore enregistrées</p>
 
-                        @endforelse
-                    </tbody>
-                </table>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
 
-              <a href="/batches/{{ $batch->id }}/followups/create" class="btn btn-dark d-block"><i class="far fa-plus-square"></i> AJOUTER TACHE</a>
+
+              <a href="/batches/{{ $batch->id }}/followups/create" class="btn btn-dark d-block"><i class="far fa-plus-square"></i> Ajouter une tâche</a>
 
         </div>
 

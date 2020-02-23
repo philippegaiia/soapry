@@ -14,7 +14,7 @@
 
                 @include('ingredients.form')
 
-                <button type="submit" class="btn btn-primary">Modifier</button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Ingrédient</button>
             </form>
         </div>
     </div>

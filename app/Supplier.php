@@ -12,7 +12,13 @@ class Supplier extends Model
         'active' => 1,
     ];
 
-    public function getActiveAttribute($attribute){
+    public function listings()
+    {
+        return $this->hasMany(Listing::class);
+    }
+
+    public function getActiveAttribute($attribute)
+    {
         return $this->activeOptions()[$attribute];
     }
 
