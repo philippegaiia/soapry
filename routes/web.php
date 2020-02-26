@@ -27,6 +27,7 @@ Route::resource('ingredient_categories', 'IngredientCategoryController');
 Route::resource('ingredients', 'IngredientController');
 
 Route::resource('suppliers.listings', 'SupplierListingController');
+Route::resource('suppliers.supplier_orders', 'SupplierSupplierOrderController')->only(['create', 'store']);
 
 Route::get('/batches/{batch}/followups/create', 'followupController@create');
 Route::post('/batches/{batch}/followups', 'followupController@store');

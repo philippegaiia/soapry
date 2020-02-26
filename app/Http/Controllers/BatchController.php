@@ -6,6 +6,7 @@ use App\Batch;
 use App\Product;
 use App\Followup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class BatchController extends Controller
 {
@@ -47,7 +48,7 @@ class BatchController extends Controller
     {
         // $batch = Batch::findOrFail($batch);
 
-        $followups = Followup::where('batch_id', $batch->id )->get();
+        $followups = Followup::where('batch_id', $batch->id )->orderBy('due_date')->get();
 
         // dd($followups);
 

@@ -33,7 +33,7 @@
                             <td>
                                 <a href="{{ route('suppliers.edit', ['supplier' => $supplier])}}" class="btn btn-sm btn-primary"><i class="far fa-edit"></i> </a>
                                 <a href="{{ route('suppliers.show', ['supplier' => $supplier])}}" class="btn btn-sm btn-info"><i class="far fa-eye"></i></a>
-                                <a href="{{ route('suppliers.listings.create', ['supplier' => $supplier])}}" class="btn btn-sm btn-secondary"><i class="fas fa-plus"></i> Commande </a>
+                                <a href="{{ route('suppliers.supplier_orders.create', ['supplier' => $supplier])}}" class="btn btn-sm btn-secondary"><i class="fas fa-plus"></i> Commande </a>
                                 <a href="{{ route('suppliers.listings.create', ['supplier' => $supplier])}}" class="btn btn-sm btn-outline-secondary "><i class="fas fa-plus"></i> Listing </a>
                             </td>
                     </tr>

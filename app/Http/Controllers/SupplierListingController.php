@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Listing;
+use App\Supplier;
+use App\Ingredient;
 use Illuminate\Http\Request;
 
 class SupplierListingController extends Controller
@@ -21,9 +24,13 @@ class SupplierListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Supplier $supplier)
     {
-        //
+        $categories = Ingredient::all();
+
+        $listing = new Listing();
+
+        return view('suppliers.listings.create', compact('supplier', 'listing', 'categories'));
     }
 
     /**
@@ -32,9 +39,22 @@ class SupplierListingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Supplier $supplier, Listing $listing)
     {
-        //
+         $data = request()->validate([
+            'ingredient_id' => 'required',
+            'code' => 'required',
+            'name' => 'required',
+            'bio' => 'required',
+            'active' =>'required',
+            'comments' => 'nullable',
+        ]);
+
+        $data['supplier_id'] = $supplier->id;
+
+        $listing = Listing::create($data);
+
+        return redirect()->route('suppliers.listings.create', [$supplier])->with('message', 'Un ingrédient a été ajoutée');
     }
 
     /**
@@ -81,4 +101,16 @@ class SupplierListingController extends Controller
     {
         //
     }
+
+    // public function validateRequest(){
+    //     return request()->validate([
+    //         'ingredient_id' => 'required',
+    //         'supplier_id' => 'required',
+    //         'code' => 'required',
+    //         'name' => 'required',
+    //         'bio' => 'required',
+    //         'active' =>'required',
+    //         'comments' => 'nullable',
+    //     ]);
+    //  }
 }

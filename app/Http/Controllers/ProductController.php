@@ -115,10 +115,10 @@ class ProductController extends Controller
             'name' => 'required',
             'weight' => 'required|numeric',
             'product_category_id' => 'required',
-            'comments' => '',
+            'comments' => 'nullable',
             'active' => 'required',
-            'ean' => '',
-            'wpcode' => '',
+            'ean' => 'nullable',
+            'wpcode' => 'nullable',
         ]);
     }
 }

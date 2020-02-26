@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Batch extends Model
@@ -11,6 +12,11 @@ class Batch extends Model
     protected $attributes =[
         'status' => 0,
         'produced' => 0,
+    ];
+
+    protected $casts = [
+        'production_date' => 'date:D d M',
+        'ready_date' => 'date:D d M',
     ];
 
     public function followups(){

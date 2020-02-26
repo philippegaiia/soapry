@@ -25,8 +25,7 @@
             <option value="{{ $statusOptionKey }}" {{ $batch->status == $statusOptionValue ? 'selected' : '' }}>{{ $statusOptionValue }}</option>
         @endforeach
     </select>
-
-</div>
+    </div>
 
 
 </div>

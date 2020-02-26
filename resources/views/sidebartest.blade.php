@@ -158,11 +158,19 @@
                         <span></span>
                     </button>
 
+                        <a href="{{ route('batches.index')}} " class="btn  btn-primary">PRODUCTION</a>
+                    <a href="{{ route('suppliers.index')}} " class="btn  btn-secondary">APPROVISIONNEMENT</a>
+                    <a href="{{ route('products.index')}} " class="btn  btn-primary">PRODUITS</a>
+                    <a href="{{ route('ingredients.index')}} " class="btn  btn-warning">PRODUCTION</a>
+
+
+
+
                     <a href="{{ URL::previous() }}" class="fm-inline"><i class="fas fa-chevron-circle-left fa-2x"></i></a>
 
-                    {{-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="">
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="">
                         <i class="fas fa-align-justify"></i>
-                    </button> --}}
+                    </button>
 
                     {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">

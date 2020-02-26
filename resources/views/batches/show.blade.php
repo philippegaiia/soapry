@@ -12,11 +12,11 @@
                         <h4><strong>Détails</strong></h4>
                         <hr>
                     </div>
-                    <h5><strong>Disponible le: </strong>{{ $batch->ready_date }}</h5>
+                    <h5><strong>Date Production: </strong>{{ $batch->production_date->format('D d M') }}</h5>
+                    <br>
+                    <h5><strong>Disponible le: </strong>{{ $batch->ready_date->format('D d M') }}</h5>
                     <br>
                     <h5><strong>Quantité: </strong>{{ $batch->units }}</h5>
-                    <br>
-                    <h5><strong>Date Production: </strong>{{ $batch->production_date }}</h5>
                     <br>
                     <h5><strong>Production OK: </strong>{{ $batch->produced }}</h5>
                     <br>
