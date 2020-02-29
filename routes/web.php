@@ -25,9 +25,12 @@ Route::resource('tasks', 'TaskController');
 Route::resource('suppliers', 'SupplierController');
 Route::resource('ingredient_categories', 'IngredientCategoryController');
 Route::resource('ingredients', 'IngredientController');
+Route::resource('supplier_orders', 'SupplierOrderController');
+
+Route::resource('supplier_orders.supplies', 'SupplierOrderSupplyController')->only(['create', 'store']);
 
 Route::resource('suppliers.listings', 'SupplierListingController');
-Route::resource('suppliers.supplier_orders', 'SupplierSupplierOrderController')->only(['create', 'store']);
+Route::resource('suppliers.supplier_orders', 'SupplierSupplierOrderController')->only(['create', 'store', 'edit', 'update']);
 
 Route::get('/batches/{batch}/followups/create', 'followupController@create');
 Route::post('/batches/{batch}/followups', 'followupController@store');

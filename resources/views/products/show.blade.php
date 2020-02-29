@@ -90,7 +90,7 @@
                 <tr>
                 <th>Batch No</th>
                 <th>Date Production</th>
-                <th>Production Ok</th>
+                <th>Produit</th>
                 <th>Quantité</th>
                 <th>Status</th>
                 <th>Actions</th>
@@ -100,7 +100,7 @@
                 @foreach ($batches as $batch)
                     <tr>
                         <td><a href="{{ route('batches.show', ['batch' => $batch])}}"> {{ $batch->product->code }}-{{ $batch->number }} </a></td>
-                        <td>{{ $batch->production_date}}</td>
+                        <td>{{ $batch->production_date->format('D d M')}}</td>
                         <td>{{ $batch->produced}}</td>
                         <td>{{ $batch->units}}</td>
                         <td>{{ $batch->status }}</td>

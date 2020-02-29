@@ -6,13 +6,13 @@
 
         <div class="form-group">
             <label for="order_date">Date Commande</label>
-            <input type="date" name="order_date" value="{{ old('order_date') ?? $order->order_date}}" class="form-control">
+            <input type="date" name="order_date" value="{{ old('order_date') ?? $order->order_date->format('Y-m-d')}}" class="form-control">
             <small class="text-danger">  {{ $errors->first('order_date') }}</small>
         </div>
 
         <div class="form-group">
             <label for="delivery_date">Date Livraison</label>
-            <input type="date" name="delivery_date" value="{{ old('delivery_date') ?? $order->delivery_date}}" class="form-control">
+            <input type="date" name="delivery_date" value="{{ old('delivery_date') ?? $order->delivery_date->format('Y-m-d')}}" class="form-control">
             <small class="text-danger">  {{ $errors->first('delivery_date') }}</small>
         </div>
 
@@ -42,6 +42,12 @@
             <label for="invoice_no">Numéro de Facture</label>
             <input type="text" name="invoice_no" value="{{ old('invoice_no') ?? $order->invoice_no}}" class="form-control">
             <small class="text-danger">  {{ $errors->first('invoice_no') }}</small>
+         </div>
+
+         <div class="form-group">
+            <label for="amount">Montant (Euros)</label>
+            <input type="numeric" name="amount" value="{{ old('amount') ?? $order->amount}}" class="form-control">
+            <small class="text-danger">  {{ $errors->first('amount') }}</small>
          </div>
 
         <div class="form-group">

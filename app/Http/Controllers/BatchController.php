@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Batch;
 use App\Product;
 use App\Followup;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -34,6 +35,8 @@ class BatchController extends Controller
         $products = Product::all();
         $lastBatch = Batch::orderBy('id', 'desc')->first()->id;
         $batch = new Batch();// creazte empty array
+        $batch->production_date = new Carbon();
+        $batch->ready_date = new Carbon();
         return view('batches.create', compact('products', 'batch', 'batches','lastBatch'));
     }
 

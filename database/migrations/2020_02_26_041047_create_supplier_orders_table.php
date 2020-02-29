@@ -23,6 +23,7 @@ class CreateSupplierOrdersTable extends Migration
             $table->string('invoice_no')->nullable();
             $table->string('bl_no')->nullable();
             $table->smallInteger('status');
+            $table->float('amount', 7, 2)->nullable();
             $table->text('comments')->nullable();
             $table->timestamps();
         });

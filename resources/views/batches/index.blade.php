@@ -17,7 +17,7 @@ Batches List
                         <th>Batch No</th>
                         <th>Product</th>
                         <th>Date Prod</th>
-                        <th>Prod Ok</th>
+                        <th>Prod Ok </th>
                         <th>Disponible</th>
                         <th>Quantité</th>
                         <th>Status</th>
@@ -29,9 +29,9 @@ Batches List
                             <tr>
                               <small>  <td> {{ $batch->product->code }}-{{ $batch->number }}</td>
                                 <td> {{ $batch->product->name }} {{ $batch->product->weight }}G</td>
-                                <td>{{ $batch->production_date}}</td>
+                                <td>{{ $batch->production_date->format('D d M')}}</td>
                                 <td>{{ $batch->produced}}</td>
-                                <td>{{ $batch->ready_date}}</td>
+                                <td>{{ $batch->ready_date->format('D d M')}}</td>
                                 <td>{{ $batch->units}}</td>
                                 <td>{{ $batch->status }}</td>
                                 <td>

@@ -48,7 +48,7 @@
 <div class="form-row">
     <div class="form-group col-md-4">
         <label class="" for="production_date">Date Production</label>
-        <input type="date" name="production_date" value="{{ old('production_date') ?? $batch->production_date}}" class="form-control">
+        <input type="date" name="production_date" value="{{ old('production_date') ?? $batch->production_date->format('Y-m-d') }}" class="form-control">
         <p class="text-muted"> {{ $errors->first('production_date') }} </p>
     </div>
     <div class="form group col-md-2">
@@ -63,7 +63,7 @@
     </div>
      <div class="form-group col-md-6">
                 <label class="" for="ready_date">Date Disponible Vente</label>
-                <input type="date" name="ready_date" value="{{ old('ready_date') ?? $batch->ready_date}}" class="form-control">
+                <input type="date" name="ready_date" value="{{ old('ready_date') ?? $batch->ready_date->format('Y-m-d')}}" class="form-control">
                 <p class="text-muted"> {{ $errors->first('ready_date') }} </p>
             </div>
 </div>

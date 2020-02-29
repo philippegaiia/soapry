@@ -15,8 +15,8 @@ class Batch extends Model
     ];
 
     protected $casts = [
-        'production_date' => 'date:D d M',
-        'ready_date' => 'date:D d M',
+        'production_date' => 'date:Y-m-d',
+        'ready_date' => 'date:Y-m-d',
     ];
 
     public function followups(){
@@ -34,7 +34,8 @@ class Batch extends Model
         return $this->statusOptions()[$attribute];
     }
 
-    public function getProducedAttribute($attribute){
+    public function getProducedAttribute($attribute)
+    {
         return $this->producedOptions()[$attribute];
     }
 

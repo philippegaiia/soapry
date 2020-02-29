@@ -1,80 +1,85 @@
 @extends('layouts.app')
 
-@section('title', 'detail for batch no' . $batch->number)
+@section('title', 'SM | Order No' . $supplierOrder->order_ref)
 
 @section('content')
-<h2> <strong>Batch No: </strong>{{ $batch->product->code}}-{{ $batch->number ?? ''}}   ({{ $batch->product->name}} {{$batch->product->weight}}G) </h2>
+<h3> <strong>Commande: {{ $supplierOrder->order_ref ?? ''}} </strong>({{ $supplierOrder->supplier->name}})</h3>
     <div class="row mb-3">
         <div class="col-lg-5">
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="card-title">
-                        <h4><strong>Détails</strong></h4>
+                        <h4><strong>Détails de la commande</strong></h4>
                         <hr>
                     </div>
-                    <h5><strong>Date Production: </strong>{{ $batch->production_date->format('D d M') }}</h5>
+                    <h5><strong>Date Commande: </strong>{{ $supplierOrder->order_date->format('D d M') }}</h5>
                     <br>
-                    <h5><strong>Disponible le: </strong>{{ $batch->ready_date->format('D d M') }}</h5>
+                    <h5><strong>Date Livraison: </strong>{{ $supplierOrder->delivery_date->format('D d M') }}</h5>
                     <br>
-                    <h5><strong>Quantité: </strong>{{ $batch->units }}</h5>
+                    <h5><strong>Statut: </strong>{{ $supplierOrder->status }}</h5>
                     <br>
-                    <h5><strong>Production OK: </strong>{{ $batch->produced }}</h5>
+                    <h5><strong>No Confirmation : </strong>{{ $supplierOrder->confirmation_no }}</h5>
                     <br>
-                    <h5><strong>Position: </strong>{{ $batch->status }}</h5>
+                    <h5><strong>No BL: </strong>{{ $supplierOrder->bl_no }}</h5>
                     <br>
-                    <h5><strong>Chargement huiles: </strong>{{ $batch->oil_weight }} KG</h5>
+                    <h5><strong>No Facture: </strong>{{ $supplierOrder->invoice_no }}</h5>
+                    <br>
+                <h5><strong>Montant HT (Euros): </strong>{{ $supplierOrder->amount}}</h5>
                 </div>
             </div>
 
-             <a href="{{ route('batches.edit', ['batch' => $batch]) }}" class="btn  btn-primary"><i class="far fa-edit"></i>  Modifier</a>
+             <a href="{{ route('suppliers.supplier_orders.edit', ['supplier' => $supplierOrder->supplier_id ,'supplier_order' => $supplierOrder->id]) }}" class="btn  btn-primary "><i class="far fa-edit"></i>  Modifier</a>
 
-            <form action="{{ route('batches.destroy', ['batch' => $batch]) }}" method="POST" class="fm-inline">
+            <form action="{{ route('supplier_orders.destroy', ['supplier_order' => $supplierOrder->id]) }}" method="POST" class="fm-inline">
                 @method('DELETE')
                 @csrf
-                <button type="submit" class="btn  btn-danger " onclick="return confirm('Etes-vous certain d\'effacer le Batch No {{ $batch->product->code }}-{{ $batch->number }} ?')"><i class="far fa-trash-alt"> </i>  DELETE</button>
+                <button type="submit" class="btn  btn-danger " onclick="return confirm('Etes-vous certain d\'effacer cette commande ?')"><i class="far fa-trash-alt"> </i>  DELETE</button>
             </form>
 
-            <a href="{{ route('batches.index') }}" class="btn  btn-info float-right"><i class="fas fa-list"></i>  Liste</a>
+            <a href="{{ route('supplier_orders.index') }}" class="btn  btn-info float-right"><i class="fas fa-list"></i>  Liste</a>
 
         </div>
         <div class="col-lg-6">
             <div class="card mb-3">
                 <div class="card-body">
                     <div class="card-title">
-                        <h4><strong>Suivi de Production</strong></h4>
+                        <h4><strong>Ingrédients commandés</strong></h4>
                     </div>
 
                      <div class="table-responsive">
                         <table class="table table-striped table-sm table-over">
                             <thead>
                                 <tr>
-                                <th>Tâche</th>
-                                <th>Date</th>
-                                <th>Terminée</th>
+                                <th>Ingrédient</th>
+                                <th>No Lot</th>
+                                <th>Qté</th>
+                                <th>Prix</th>
+                                <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($followups as $followup)
+                                @forelse ($supplies as $supply)
                                     <tr>
-                                        <td>{{ $followup->task->name}}</td>
-                                        <td>{{ $followup->due_date}}</td>
-                                        <td>{{ $followup->done}}</td>
+                                        <td>{{ $supply->listing->name}}</td>
+                                        <td>{{ $supply->batch}}</td>
+                                        <td>{{ $supply->quantity}}</td>
+                                        <td>{{ $supply->price}}</td>
                                         <td>
-                                            <a href="/followups/{{ $followup->id }}/edit" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
-                                        <form action="/batches/{{ $batch->id}}/followups/{{ $followup->id }}"  method="POST" class="fm-inline">
+                                            <a href="/supplies/{{ $supply->id }}/edit" class="btn btn-sm btn-primary"><i class="far fa-edit"></i></a>
+                                            {{-- <form action="supplier_orders.destroy, []"  method="POST" class="fm-inline">
                                                 @method('DELETE')
                                                 @csrf
                                                     <button
                                                         type="submit"
                                                         class="btn btn-sm btn-danger fm-inline"
-                                                        onclick="return confirm('Etes-vous certain d\'effacer la tâche de suivi de production - {{ $followup->task->name }} - prévue le {{ $followup->due_date }} ?')">
+                                                        onclick="return confirm('Etes-vous certain d\'effacer la tâche de suivi de production - {{ $supply->task->name }} - prévue le {{ $supply->due_date }} ?')">
                                                     <i class="far fa-trash-alt"></i>
                                                     </button>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                 @empty
-                                <p>Pas de tâches encore enregistrées!!!!</p>
+                                <p>Pas de matières premières commandées</p>
 
                                 @endforelse
                             </tbody>
@@ -85,7 +90,7 @@
             </div>
 
 
-              <a href="/batches/{{ $batch->id }}/followups/create" class="btn btn-dark d-block"><i class="far fa-plus-square"></i> Ajouter une tâche</a>
+              <a href="{{ route('supplier_orders.supplies.create', $supplierOrder->supplier_id )}}" class="btn btn-dark d-block"><i class="far fa-plus-square"></i> Ajouter un ingrédient à la commande</a>
 
         </div>
 
@@ -104,7 +109,7 @@
                 <button type="submit" class="btn btn-danger " onclick="return confirm('Etes-vous certain d\'effacer le Batch No {{ $batch->product->code }}-{{ $batch->number }} ?')">DELETE</button>
             </form>
 
-            <a href="/batches/{{ $batch->id }}/followups/create" class="btn btn-dark float">AJOUTER TACHE</a>
+            <a href="/batches/{{ $batch->id }}/supplys/create" class="btn btn-dark float">AJOUTER TACHE</a>
 
             <a href="{{ route('batches.index') }}" class="btn btn-info float-right">RETOUR LISTE</a>
 

@@ -15,6 +15,13 @@ class CreateSuppliesTable extends Migration
     {
         Schema::create('supplies', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('supplier_order_id');
+            $table->unsignedBigInteger('listing_id');
+            $table->float('quantity', 7, 2);
+            $table->float('price', 7, 2)->nullable();
+            $table->string('batch')->nullable();
+            $table->date('expiry_date')->nullable();
+            $table->smallInteger('status');
             $table->timestamps();
         });
     }
