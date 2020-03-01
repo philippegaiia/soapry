@@ -6,6 +6,7 @@
                 <option value="{{ $listing->id }}" {{ $listing->id == $supply->listing_id ? 'selected' : '' }}>{{ $listing->name }}</option>
             @endforeach
         </select>
+
     </div>
 
         <div class="form-group">
@@ -27,7 +28,7 @@
         </div>
 
         <div class="form-group">
-        <label for="status">Disponibilité</label>
+        <label for="status">Stock</label>
         <select name="status" id="status" class="form-control">
             <option value="" disabled>Choisir Disponibilité de l'ingrédient</option>
             @foreach ($supply->statusOptions() as $statusOptionKey => $statusOptionValue)

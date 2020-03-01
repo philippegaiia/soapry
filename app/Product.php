@@ -22,6 +22,11 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class);
     }
 
+    public function formulas()
+    {
+        return $this->belongsToMany(Formula::class);
+    }
+
     public function getActiveAttribute($attribute){
         return $this->activeOptions()[$attribute];
     }

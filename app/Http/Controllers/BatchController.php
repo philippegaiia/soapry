@@ -21,7 +21,7 @@ class BatchController extends Controller
         // $planned = Batch::planned()->get();
         // $confirmed = Batch::confirmed()->get();
 
-        $batches = Batch::all();
+        $batches = Batch::orderBy('production_date', 'desc')->get();
         // $batches = Batch::where('status', 'Planifié')->get();
 
        // dd($batches);

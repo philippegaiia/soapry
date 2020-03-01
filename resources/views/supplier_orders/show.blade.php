@@ -90,7 +90,7 @@
             </div>
 
 
-              <a href="{{ route('supplier_orders.supplies.create', $supplierOrder->supplier_id )}}" class="btn btn-dark d-block"><i class="far fa-plus-square"></i> Ajouter un ingrédient à la commande</a>
+              <a href="{{ route('supplier_orders.supplies.create', $supplierOrder->id )}}" class="btn btn-dark d-block"><i class="far fa-plus-square"></i> Ajouter un ingrédient à la commande</a>
 
         </div>
 

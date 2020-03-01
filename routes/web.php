@@ -20,12 +20,13 @@ Route::view('about', 'about');
 
 Route::resource('batches', 'BatchController');//->middleware('auth');
 Route::resource('products', 'ProductController');
-Route::resource('product_categories', 'ProductCategoryController')->except(['create', 'show']);
+Route::resource('product_categories', 'ProductCategoryController');
 Route::resource('tasks', 'TaskController');
 Route::resource('suppliers', 'SupplierController');
 Route::resource('ingredient_categories', 'IngredientCategoryController');
 Route::resource('ingredients', 'IngredientController');
 Route::resource('supplier_orders', 'SupplierOrderController');
+Route::resource('supplies', 'SupplyController');
 
 Route::resource('supplier_orders.supplies', 'SupplierOrderSupplyController')->only(['create', 'store']);
 

@@ -34,7 +34,8 @@ class Supply extends Model
      public function statusOptions(){
         return [
             0 => '0',
-            1 => 'En Stock',
+            1 => 'Stock',
+            2 => 'Epuisé'
         ];
     }
 }

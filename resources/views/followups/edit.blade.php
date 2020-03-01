@@ -21,7 +21,7 @@ Modifier Suivi Production
 
                 <button type="submit" class="btn btn-lg btn-primary">Modifer</button>
 
-                <form action="/followups/{{ $followup->id}}"  method="POST" class="fm-inline">
+                {{-- <form action="/followups/{{ $followup->id}}"  method="POST" class="fm-inline">
                     @method('DELETE')
                     @csrf
                         <button
@@ -31,7 +31,7 @@ Modifier Suivi Production
                         <i class="far fa-trash-alt pr-2"> </i>
                              Delete
                         </button>
-                </form>
+                </form> --}}
             </form>
         </div>
     </div>

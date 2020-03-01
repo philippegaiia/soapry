@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Supply;
-use App\Listing;
-use Carbon\Carbon;
-use App\SupplierOrder;
 use Illuminate\Http\Request;
 
-class SupplierOrderSupplyController extends Controller
+class SupplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +14,13 @@ class SupplierOrderSupplyController extends Controller
      */
     public function index()
     {
-        //
+        $supplies = Supply::with(['supplierOrder'=> function ($query){
+            $query->orderBy('order_date', 'desc');
+        }])->get();
+
+        //dd($supplies);
+
+        return view('supplies.index', compact('supplies'));
     }
 
     /**
@@ -25,14 +28,9 @@ class SupplierOrderSupplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(SupplierOrder $supplierOrder)
+    public function create()
     {
-        $supply = new Supply();
-        $supply->expiry_date = Carbon::now()->addMonths(24);
-        // $supply->expiry_date->add
-        $listings = Listing::where('supplier_id', $supplierOrder->supplier_id)->get();
-
-        return view('supplier_orders.supplies.create', compact('supplierOrder', 'supply', 'listings'));
+        //
     }
 
     /**
@@ -41,24 +39,9 @@ class SupplierOrderSupplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SupplierOrder $supplierOrder, Supply $supply)
+    public function store(Request $request)
     {
-         $data = request()->validate([
-            'listing_id' => 'required',
-            'quantity' => 'required|numeric',
-            'price' => 'required|numeric',
-            'batch' => 'nullable',
-            'expiry_date' => 'nullable|date',
-            'bl_no' => 'nullable',
-            'status' => 'required',
-
-        ]);
-
-        $data['supplier_order_id'] = $supplierOrder->id;
-
-        $supply = Supply::create($data);
-
-        return redirect()->route('supplier_orders.show', [$supplierOrder])->with('message', 'Une ligne de commande a été créée');
+        //
     }
 
     /**
