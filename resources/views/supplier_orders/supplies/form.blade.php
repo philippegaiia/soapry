@@ -15,7 +15,7 @@
             <small class="text-danger">  {{ $errors->first('quantity') }}</small>
         </div>
 
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="price">Prix (/unité)</label>
             <input type="string" name="price" value="{{ old('price') ?? $supply->price}}" class="form-control">
             <small class="text-danger">  {{ $errors->first('price') }}</small>
@@ -35,6 +35,6 @@
                 <option value="{{ $statusOptionKey }}" {{ $supply->status == $statusOptionValue ? 'selected' : '' }}>{{ $statusOptionValue }}</option>
             @endforeach
         </select>
-        </div>
+        </div> --}}
 
 @csrf

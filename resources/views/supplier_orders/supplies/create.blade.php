@@ -14,7 +14,7 @@
 
                 @include('supplier_orders.supplies.form')
 
-                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Listing</button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</button>
             </form>
         </div>
     </div>

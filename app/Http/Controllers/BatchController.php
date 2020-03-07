@@ -85,7 +85,7 @@ class BatchController extends Controller
         return request()->validate([
             'number' => 'required',
             'status' => 'required',
-            'product_id' => 'required',
+            'product_id' => 'nullable',
             'produced' => 'required',
             'production_date' => 'required|date|after_or_equal:today',
             'ready_date' => 'required|date|after_or_equal:production_date',

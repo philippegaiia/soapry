@@ -33,7 +33,7 @@ Commandes Fournisseurs
                         <td>{{ $order->status}}</td>
                         <td>Montant</td>
                         <td>
-                            <a href="{{ route('suppliers.supplier_orders.create', ['supplier' => $order->supplier->id])}}" class="btn btn-sm btn-secondary"><i class="fas fa-plus"></i> Commande </a>
+                            {{-- <a href="{{ route('suppliers.supplier_orders.create', ['supplier' => $order->supplier->id])}}" class="btn btn-sm btn-secondary"><i class="fas fa-plus"></i> Commande </a> --}}
                             <a href="{{ route('supplier_orders.show', ['supplier_order' => $order])}}" class="btn btn-sm btn-info"><i class="far fa-eye"></i> </a>
                         </td>
                         </tr>

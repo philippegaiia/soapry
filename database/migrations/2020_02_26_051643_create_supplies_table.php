@@ -22,6 +22,7 @@ class CreateSuppliesTable extends Migration
             $table->string('batch')->nullable();
             $table->date('expiry_date')->nullable();
             $table->smallInteger('status');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }

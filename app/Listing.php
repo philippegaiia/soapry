@@ -23,6 +23,11 @@ class Listing extends Model
         return $this->belongsTo(Supplier::class);
     }
 
+    public function supplies()
+    {
+        return $this->hasMany(Supply::class);
+    }
+
     public function getActiveAttribute($attribute){
         return $this->activeOptions()[$attribute];
     }

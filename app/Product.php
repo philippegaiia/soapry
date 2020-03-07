@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Formula;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -24,7 +25,7 @@ class Product extends Model
 
     public function formulas()
     {
-        return $this->belongsToMany(Formula::class);
+        return $this->belongsToMany(Formula::class)->withTimestamps();
     }
 
     public function getActiveAttribute($attribute){

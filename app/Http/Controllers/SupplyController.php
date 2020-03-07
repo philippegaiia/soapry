@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Supply;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SupplyController extends Controller
@@ -61,9 +62,11 @@ class SupplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Supply $supply)
     {
-        //
+        $supply->expiry_date = Carbon::now()->addMonths(24);
+
+        return view('supplies.edit', compact('supply'));
     }
 
     /**
@@ -73,9 +76,19 @@ class SupplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Supply $supply)
     {
-        //
+         $data = request()->validate([
+            'price' => 'required|numeric',
+            'batch' => 'nullable',
+            'expiry_date' => 'nullable|date',
+            'bl_no' => 'nullable',
+            'status' => 'required',
+        ]);
+
+        $supply->update($data);
+
+        return redirect()->route('supplier_orders.show', ['supplier_order' => $supply->supplier_order_id])->with('message', 'Un ingrédient a été mùodfié');
     }
 
     /**

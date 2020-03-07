@@ -6,7 +6,7 @@
 <h3> <strong>Commande: {{ $supplierOrder->order_ref ?? ''}} </strong>({{ $supplierOrder->supplier->name}})</h3>
     <div class="row mb-3">
         <div class="col-lg-5">
-            <div class="card mb-3">
+            <div class="card mb-3 shadow-sm rounded">
                 <div class="card-body">
                     <div class="card-title">
                         <h4><strong>Détails de la commande</strong></h4>
@@ -36,11 +36,11 @@
                 <button type="submit" class="btn  btn-danger " onclick="return confirm('Etes-vous certain d\'effacer cette commande ?')"><i class="far fa-trash-alt"> </i>  DELETE</button>
             </form>
 
-            <a href="{{ route('supplier_orders.index') }}" class="btn  btn-info float-right"><i class="fas fa-list"></i>  Liste</a>
+            <a href="{{ route('supplier_orders.index') }}" class="btn  btn-info float-right"><i class="fas fa-list"></i> Commandes</a>
 
         </div>
         <div class="col-lg-6">
-            <div class="card mb-3">
+            <div class="card mb-3 shadow-sm rounded">
                 <div class="card-body">
                     <div class="card-title">
                         <h4><strong>Ingrédients commandés</strong></h4>

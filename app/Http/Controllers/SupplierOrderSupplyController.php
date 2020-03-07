@@ -28,8 +28,7 @@ class SupplierOrderSupplyController extends Controller
     public function create(SupplierOrder $supplierOrder)
     {
         $supply = new Supply();
-        $supply->expiry_date = Carbon::now()->addMonths(24);
-        // $supply->expiry_date->add
+
         $listings = Listing::where('supplier_id', $supplierOrder->supplier_id)->get();
 
         return view('supplier_orders.supplies.create', compact('supplierOrder', 'supply', 'listings'));
@@ -46,11 +45,11 @@ class SupplierOrderSupplyController extends Controller
          $data = request()->validate([
             'listing_id' => 'required',
             'quantity' => 'required|numeric',
-            'price' => 'required|numeric',
-            'batch' => 'nullable',
-            'expiry_date' => 'nullable|date',
-            'bl_no' => 'nullable',
-            'status' => 'required',
+            // 'price' => 'required|numeric',
+            // 'batch' => 'nullable',
+            // 'expiry_date' => 'nullable|date',
+            // 'bl_no' => 'nullable',
+            // 'status' => 'required',
 
         ]);
 

@@ -9,12 +9,14 @@ Commandes Fournisseurs
     <div class="row">
         <div class="col-md-12">
             <h2>Liste des Approvisionnements</h2>
-            <p><a href="{{ route('supplier_orders.index') }}">Ajouter une commande</a></p>
+            <p><a href="{{ route('suppliers.index') }}">Ajouter une commande</a></p>
             <div class="table-responsive">
                 <table class="table table-striped table-sm table-over">
                     <thead>
                         <tr>
                             <th>No Commande</th>
+                            <th>No BL</th>
+                            <th>Lot</th>
                             <th>Produit</th>
                             <th>Quantité</th>
                             <th>Prix Unitaire</th>
@@ -28,6 +30,8 @@ Commandes Fournisseurs
                         @forelse ($supplies as $supply)
                             <tr class="{{ $supply->supplierOrder->status == 'Livrée' ? 'table-success' : ''}}">
                                 <td>{{ $supply->supplierOrder->order_ref }}</td>
+                                <td>{{ $supply->supplierOrder->bl_no }}</td>
+                                <td>{{ $supply->batch }}</td>
                                 <td>{{ $supply->listing->name}} </td>
                                 <td>{{ number_format($supply->quantity, 2)}}</td>
                                 <td>{{ number_format($supply->price, 2) }}</td>
