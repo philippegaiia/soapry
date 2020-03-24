@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Formula;
+use App\Product;
+use App\Ingredient;
+use App\FormulaItem;
 use Illuminate\Http\Request;
 
 class FormulaController extends Controller
@@ -23,7 +27,14 @@ class FormulaController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        $ingredients = Ingredient::all();
+
+        $formula = new Formula();
+
+        return view('formulas.create', compact('products', 'ingredients', 'formula'));
+
+
     }
 
     /**
@@ -34,7 +45,29 @@ class FormulaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        //dd($request);
+        // Store Formula
+        //$formula = Formula::create($this->validateRequest());
+
+        $formula = Formula::create($request->formula);
+
+        //dd($formula);
+
+        for ($i = 0; $i < count($request->ingredient); $i++)
+        {
+            if (isset($request->percent[$i]) && isset($request->ingredient[$i]))
+            {
+                FormulaItem::create([
+                    'formula_id' => $formula->id,
+                    'ingredient_id' => $request->ingredient[$i],
+                    'percent' => $request->percent[$i],
+
+                ]);
+            }
+        }
+
+        return('Created');
     }
 
     /**
@@ -80,5 +113,29 @@ class FormulaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // private function validateRequest(){
+
+    //     return request()->validate([
+    //         'formula[status]' => 'required',
+    //         'formula[product_id]' => 'required',
+    //         'formula[code]' => 'nullable',
+    //         'formula[application_date]' => 'required|date',
+    //         'formula[name]' => 'nullable',
+    //         'formula[dip]' => 'required',
+    //     ]);
+    // }
+
+     private function validateRequest(){
+
+        return request()->validate([
+            'formula.status' => 'required',
+            'formula.product_id' => 'required',
+            'formula.code' => 'required',
+            'formula.application_date' => 'required|date',
+            'formula.name' => 'required',
+            'formula.dip' => 'required',
+        ]);
     }
 }

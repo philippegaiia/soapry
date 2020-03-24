@@ -27,6 +27,7 @@ Route::resource('ingredient_categories', 'IngredientCategoryController');
 Route::resource('ingredients', 'IngredientController');
 Route::resource('supplier_orders', 'SupplierOrderController');
 Route::resource('supplies', 'SupplyController');
+Route::resource('formulas', 'FormulaController');
 
 Route::resource('supplier_orders.supplies', 'SupplierOrderSupplyController')->only(['create', 'store']);
 

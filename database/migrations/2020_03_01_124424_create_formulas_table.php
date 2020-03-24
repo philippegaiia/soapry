@@ -15,9 +15,11 @@ class CreateFormulasTable extends Migration
     {
         Schema::create('formulas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('product_id');
             $table->string('code');
             $table->string('name');
             $table->smallInteger('status')->default(0);
+            $table->tinyInteger('dip');
             $table->date('application_date')->nullable();
             $table->timestamps();
         });

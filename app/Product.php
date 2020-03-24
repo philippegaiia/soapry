@@ -25,7 +25,7 @@ class Product extends Model
 
     public function formulas()
     {
-        return $this->belongsToMany(Formula::class)->withTimestamps();
+        return $this->hasMany(Formula::class)->withTimestamps();
     }
 
     public function getActiveAttribute($attribute){

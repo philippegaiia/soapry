@@ -8,20 +8,40 @@ class Formula extends Model
 {
     protected $guarded = [];
 
+    protected $attributes =[
+        'status' => 0,
+        'dip' => 1,
+    ];
+
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this->belongsTo(Product::class);
     }
 
-    public function getActiveAttribute($attribute){
-        return $this->activeOptions()[$attribute];
+    public function formulaItems()
+    {
+        return $this->hasMany(FormulaItem::class);
     }
 
-    public function activeOptions(){
+    public function getStatusAttribute($attribute){
+        return $this->statusOptions()[$attribute];
+    }
+
+    public function getDipAttribute($attribute){
+        return $this->dipOptions()[$attribute];
+    }
+
+    public function statusOptions(){
         return [
             1 => 'Active',
             0 => 'Inactive',
         ];
     }
 
+    public function dipOptions(){
+        return [
+            1 => 'oui',
+            0 => 'non',
+        ];
+    }
 }
